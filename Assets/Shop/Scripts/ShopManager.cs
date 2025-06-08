@@ -36,7 +36,7 @@ public class ShopManager : MonoBehaviour
                 if (AllShopItems[i] != null)
                 {
                     ShopItemsInstances.Add(Instantiate(AllShopItems[i]));
-                    tile.GetComponent<ShopItemTile>().setupTile(Instantiate(ShopItemsInstances[i]), PurchaseItem);
+                    tile.GetComponent<ShopItemTile>().setupTile(ShopItemsInstances[i], PurchaseItem);
                 }
             }
         }
