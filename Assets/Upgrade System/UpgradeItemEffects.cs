@@ -2,7 +2,11 @@ using UnityEngine;
 
 public abstract class UpgradeItemEffects : ScriptableObject
 {
-        public abstract void Apply(UpgradeItem item);
+    public StatValue stat;
+    public Stats[] statsToAffect; // Array of stats that will be affected by this effect
+
+    //Use this to define upgrade functions that will not affect stats
+    public abstract void Apply(UpgradeItem item); // Abstract method to apply the effect on the UpgradeItem
 }
 
 
