@@ -27,21 +27,16 @@ public class UpgradeManager : MonoBehaviour
             if (item.isPurchased)
             {
                 Debug.Log("Item is already purchased but out of stock.");
-                foreach (UpgradeItemEffects effect in item.effects)
-                {
-                    effect.Apply(item); // Invoke all the effects associated with the item
-                }
             }
-
             return;
         }
-        
+
         if (item.isPurchased)
         {
             Debug.Log("Item is already purchased and out of stock.");
             return;
         }
-        
+
         // Assuming we have a method to check player's currency
         if (item.data.itemPrice <= playerCurrency)
         {
@@ -53,7 +48,12 @@ public class UpgradeManager : MonoBehaviour
 
             foreach (UpgradeItemEffects effect in item.effects)
             {
-                effect.Apply(item); // Invoke all the effects associated with the item
+                foreach (var stat in effect.statsToAffect)
+                {
+                    if (!stat.appliedUpgrades.Contains(effect.stat)) stat.appliedUpgrades.Add(effect.stat);
+                    // Apply the effect to the player's stats
+                    effect.Apply(item);
+                }
             }
         }
         else
