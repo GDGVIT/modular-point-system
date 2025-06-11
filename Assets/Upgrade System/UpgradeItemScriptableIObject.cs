@@ -20,5 +20,6 @@ public class UpgradeItem
 {
     public UpgradeItemScriptableIObject data;
     public bool isPurchased = false; // Flag to check if the item is purchased
+    public int itemQuantity;// Quantity of the item available in the shop
     public UpgradeItemEffects[] effects;// Event to register all the fuctions which need to be called on purchase of item
 }

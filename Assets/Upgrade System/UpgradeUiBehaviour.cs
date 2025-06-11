@@ -1,7 +1,10 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(100)]
 public class UpgradeUiBehaviour : MonoBehaviour
 {
+    UpgradeManager manager;
+
     [SerializeField] private GameObject upgradeUiTile;// Prefab for each shop item tile
     [SerializeField] private Transform tileParent; // Parent transform where shop tiles will be instantiated and the content of the scroll rect
     [SerializeField] private bool randomize = false;
@@ -10,7 +13,13 @@ public class UpgradeUiBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
-        if(randomize)
+        manager = UpgradeManager.Instance; // Get the instance of UpgradeManager
+        if (manager == null)
+        {
+            Debug.LogError("UpgradeManager instance is not found. Please ensure it is initialized before UpgradeUiBehaviour.");
+            return;
+        }
+        if (randomize)
         {
             // Shuffle the items in AllShopItems list
             for (int i = 0; i < count; i++)
@@ -18,24 +27,24 @@ public class UpgradeUiBehaviour : MonoBehaviour
                 GameObject tile = Instantiate(upgradeUiTile, tileParent);
                 if (tile != null)//Null check to avoid null pointer error
                 {
-                    int a = Random.Range(0, UpgradeManager.Instance.AllShopItems.Count);
-                    if (UpgradeManager.Instance.AllShopItems[a] != null)
+                    int a = Random.Range(0, manager.AllShopItems.Count);
+                    if (manager.AllShopItems[a] != null)
                     {
-                        tile.GetComponent<UpgradeItemTile>().setupTile(UpgradeManager.Instance.AllShopItems[a], UpgradeManager.Instance.PurchaseItem);
+                        tile.GetComponent<UpgradeItemTile>().setupTile(manager.AllShopItems[a], manager.PurchaseItem);
                     }
                 }
             }
         }
         else
         {
-            for (int i = 0; i < UpgradeManager.Instance.AllShopItems.Count; i++)
+            for (int i = 0; i < manager.AllShopItems.Count; i++)
             {
                 GameObject tile = Instantiate(upgradeUiTile, tileParent);
-                if (tile != null)//Null check to avoid null pointer error
+                if (tile != null && manager != null)//Null check to avoid null pointer error
                 {
-                    if (UpgradeManager.Instance.AllShopItems[i] != null)
+                    if (manager.AllShopItems[i] != null)
                     {
-                        tile.GetComponent<UpgradeItemTile>().setupTile(UpgradeManager.Instance.AllShopItems[i], UpgradeManager.Instance.PurchaseItem);
+                        tile.GetComponent<UpgradeItemTile>().setupTile(manager.AllShopItems[i], manager.PurchaseItem);
                     }
                 }
             }
@@ -51,3 +60,4 @@ public class UpgradeUiBehaviour : MonoBehaviour
         }
     }
 }
+

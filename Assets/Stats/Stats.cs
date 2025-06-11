@@ -8,42 +8,47 @@ public class Stats : ScriptableObject
     public List<StatValue> defaultStats = new List<StatValue>();
     public List<StatValue> appliedUpgrades = new List<StatValue>();
 
-    public StatValue getStat(StatTypes stat)
+    public int getStat(StatTypes stat)
     {
         foreach (StatValue item in defaultStats)
         {
             if (item.stat == stat)
             {
+                int value = item.value;
+
                 foreach (StatValue upgrade in appliedUpgrades)
                 {
                     if (upgrade.stat == stat)
                     {
-                        item.value += upgrade.value;
+                        value += upgrade.value;
                     }
                 }
 
-                return item;
+                return value;
             }
         }
 
-        Debug.LogError("Not found");
-        return null;
+        Debug.LogError("Not found stat: " + stat + " in " + name);
+        return -1;
     }
 
-    public void setStat(StatValue stat)
+    public void setStat(StatTypes stat, int value)
     {
         foreach (StatValue item in defaultStats)
         {
-            if (item.stat == stat.stat)
+            if (item.stat == stat)
             {
-                item.value += stat.value;
+                item.value = value;
+                return;
             }
         }
+
+        Debug.LogError("Stat not found: " + stat);
     }
 
-    public void unlockUpgrade(UpgradeItemEffects statUpgrade)
+    public void unlockUpgrade(StatValue statUpgrade)
     {
-        if (!appliedUpgrades.Contains(statUpgrade.stat)) appliedUpgrades.Add(statUpgrade.stat);
+        if (!appliedUpgrades.Contains(statUpgrade)) appliedUpgrades.Add(statUpgrade);
     }
 
     public void resetUpgrades()
@@ -71,4 +76,9 @@ public class StatValue
 {
     public StatTypes stat;
     public int value;
+    public StatValue(StatTypes stat, int value)
+    {
+        this.stat = stat;
+        this.value = value;
+    }
 }

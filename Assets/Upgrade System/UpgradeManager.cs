@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class UpgradeManager : MonoBehaviour
 {
     public List<UpgradeItem> AllShopItems; // List of shop items which are available in the sho
     public int playerCurrency;// Player's current currency amount
-    public static UpgradeManager Instance { get; private set; } // Singleton instance of the UpgradeManager
+    public static UpgradeManager Instance; // Singleton instance of the UpgradeManager
 
     void Awake()
     {
@@ -28,6 +29,7 @@ public class UpgradeManager : MonoBehaviour
             {
                 Debug.Log("Item is already purchased but out of stock.");
             }
+
             return;
         }
 
@@ -42,7 +44,7 @@ public class UpgradeManager : MonoBehaviour
         {
             item.isPurchased = true;// Mark the item as purchased
             playerCurrency -= item.data.itemPrice; // Deduct the item's price from player's currency
-            item.data.itemQuantity--;// Decrease the item's quantity
+            item.itemQuantity--;// Decrease the item's quantity
 
             Debug.Log($"Purchased {item.data.itemName} for {item.data.itemPrice} coins.");
 
@@ -50,9 +52,7 @@ public class UpgradeManager : MonoBehaviour
             {
                 foreach (var stat in effect.statsToAffect)
                 {
-                    if (!stat.appliedUpgrades.Contains(effect.stat)) stat.appliedUpgrades.Add(effect.stat);
-                    // Apply the effect to the player's stats
-                    effect.Apply(item);
+                    stat.unlockUpgrade(effect.stat);// Apply the effect to the player's stats
                 }
             }
         }
