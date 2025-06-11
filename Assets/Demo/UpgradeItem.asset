@@ -18,3 +18,5 @@ MonoBehaviour:
   itemPrice: 0
   itemDescription: 
   itemQuantity: 0
+  effects:
+  - {fileID: 0}

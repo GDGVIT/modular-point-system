@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class UpgradeItemTile : MonoBehaviour
 {
     public Image tileItemImage;
-    public TMP_Text tileText;
+    public TMP_Text tileNameText;
+    public TMP_Text tilePriceText;
 
     public void setupTile(UpgradeItem item, UnityAction<UpgradeItem> PurchaseItem)
     {
@@ -24,10 +25,17 @@ public class UpgradeItemTile : MonoBehaviour
         }
         else Debug.LogError("Image component or item image is null for tile at index ");
 
-        if (tileText != null) // Check if the text component are not null
+        if (tileNameText != null) // Check if the text component are not null
         {
-            tileText.text = item.data.itemPrice.ToString(); // Set the item price text
+            tileNameText.text = item.data.itemName; // Set the item name text
+        }
+        else Debug.LogError("Text component or item name is null for tile at index ");
+
+        if (tilePriceText != null) // Check if the text component are not null
+        {
+            tilePriceText.text = item.data.itemPrice.ToString(); // Set the item price text
         }
         else Debug.LogError("Text component or item price is null for tile at index ");
     }
 }
+
