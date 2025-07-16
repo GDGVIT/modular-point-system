@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+// This script defines a class UpgradeItemTile that is used to set up a tile in the upgrade shop UI.
 public class UpgradeItemTile : MonoBehaviour
 {
     public Image tileItemImage;
@@ -38,4 +39,3 @@ public class UpgradeItemTile : MonoBehaviour
         else Debug.LogError("Text component or item price is null for tile at index ");
     }
 }
-

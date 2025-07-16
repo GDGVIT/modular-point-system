@@ -4,9 +4,11 @@ using UnityEngine;
 [DefaultExecutionOrder(-1)]
 public class UpgradeManager : MonoBehaviour
 {
-    public List<UpgradeItem> AllShopItems; // List of shop items which are available in the sho
-    public int playerCurrency;// Player's current currency amount
+    public List<UpgradeItem> AllUpgradeItems; // List of shop items which are available in the sho
     public static UpgradeManager Instance; // Singleton instance of the UpgradeManager
+    public GameObject upgradeUI;
+    public int threshold = 10;
+    int score, lastRecorededScore = 0; // Variable to keep track of the last recorded score
 
     void Awake()
     {
@@ -20,9 +22,19 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (score - lastRecorededScore >= threshold)
+        {
+            lastRecorededScore = score; // Update the last recorded score
+            if (upgradeUI != null) upgradeUI.SetActive(true); // Show the upgrade UI when the score threshold is reached
+        }
+
+    }
+
     public void PurchaseItem(UpgradeItem item)
     {
-        if (item.data.itemQuantity <= 0)
+        if (item.itemQuantity <= 0)
         {
             Debug.Log("Item is out of stock.");
             if (item.isPurchased)
@@ -40,25 +52,14 @@ public class UpgradeManager : MonoBehaviour
         }
 
         // Assuming we have a method to check player's currency
-        if (item.data.itemPrice <= playerCurrency)
-        {
-            item.isPurchased = true;// Mark the item as purchased
-            playerCurrency -= item.data.itemPrice; // Deduct the item's price from player's currency
-            item.itemQuantity--;// Decrease the item's quantity
+        item.isPurchased = true;// Mark the item as purchased
 
-            Debug.Log($"Purchased {item.data.itemName} for {item.data.itemPrice} coins.");
-
-            foreach (UpgradeItemEffects effect in item.effects)
-            {
-                foreach (var stat in effect.statsToAffect)
-                {
-                    stat.unlockUpgrade(effect.stat);// Apply the effect to the player's stats
-                }
-            }
-        }
-        else
+        foreach (UpgradeItemEffects effect in item.effects)
         {
-            Debug.Log("Not enough currency to purchase this item.");
+            effect.Apply(item); // Apply all effects associated with the item 
         }
+
+        Time.timeScale = 1f; // Resume the game time after purchase
+        if (upgradeUI != null) upgradeUI.SetActive(false); // Hide the upgrade UI after purchase
     }
 }

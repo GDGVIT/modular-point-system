@@ -27,24 +27,24 @@ public class UpgradeUiBehaviour : MonoBehaviour
                 GameObject tile = Instantiate(upgradeUiTile, tileParent);
                 if (tile != null)//Null check to avoid null pointer error
                 {
-                    int a = Random.Range(0, manager.AllShopItems.Count);
-                    if (manager.AllShopItems[a] != null)
+                    int a = Random.Range(0, manager.AllUpgradeItems.Count);
+                    if (manager.AllUpgradeItems[a] != null)
                     {
-                        tile.GetComponent<UpgradeItemTile>().setupTile(manager.AllShopItems[a], manager.PurchaseItem);
+                        tile.GetComponent<UpgradeItemTile>().setupTile(manager.AllUpgradeItems[a], manager.PurchaseItem);
                     }
                 }
             }
         }
         else
         {
-            for (int i = 0; i < manager.AllShopItems.Count; i++)
+            for (int i = 0; i < manager.AllUpgradeItems.Count; i++)
             {
                 GameObject tile = Instantiate(upgradeUiTile, tileParent);
                 if (tile != null && manager != null)//Null check to avoid null pointer error
                 {
-                    if (manager.AllShopItems[i] != null)
+                    if (manager.AllUpgradeItems[i] != null)
                     {
-                        tile.GetComponent<UpgradeItemTile>().setupTile(manager.AllShopItems[i], manager.PurchaseItem);
+                        tile.GetComponent<UpgradeItemTile>().setupTile(manager.AllUpgradeItems[i], manager.PurchaseItem);
                     }
                 }
             }
