@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gun Object", order = 0)]
-public class gunObject : Stats
+public class GunIScriptableObject : Stats
 {
     public GameObject gun;
 

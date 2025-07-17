@@ -8,14 +8,8 @@ public class XPManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
+        if (instance != null) Destroy(this);
+        instance = this;
     }
 
     public void AddPoints(int index, float value)

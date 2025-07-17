@@ -9,16 +9,16 @@ public class Gun : MonoBehaviour
     ObjectPooler pool;
     InputSystem_Actions input;
 
-    public List<gunObject> gunTypes;
-    public gunObject activeGun;
+    public List<GunIScriptableObject> gunTypes;
+    GunIScriptableObject activeGun;
 
-    public bool isReloading = false;
-    public int currAmmo = 0;
+    bool isReloading = false;
+    int currAmmo = 0;
 
     float canFire, fireInput = 0;
 
     [SerializeField] Vector3 reloadRotation;
-    public Transform gunParent;
+    [SerializeField] Transform gunParent;
     AudioSource audioSource;
 
     [Header("Objects")]
@@ -33,14 +33,14 @@ public class Gun : MonoBehaviour
         input = new InputSystem_Actions();
         audioSource = GetComponent<AudioSource>();
 
-        //gunTypes[Random.Range(0, gunTypes.Count)].active = true;
+        //gunTypes[Random.Range(0, gunTypes.Count)].active = true; //To get a random gun type
 
-        foreach (gunObject item in gunTypes)
+        foreach (GunIScriptableObject item in gunTypes)
         {
             if (item.active)
             {
                 activeGun = item;
-                //item.active = false;
+                //item.active = false; //To save the last active gun
                 break;
             }
         }
@@ -129,7 +129,6 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(activeGun.reloadTime);
         isReloading = false;
-        //yield return new WaitForSeconds(.25f);
 
         currAmmo = activeGun.ammo;
     }
