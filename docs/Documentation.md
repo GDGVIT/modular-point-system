@@ -1,6 +1,6 @@
 
 # 🧩 Project Documentation
-## 📦 Project Name
+## 📦 ModuKit
 **Description**:  
 This unity package enables you to reduce the time required to prototype and feel out game ideas from weeks to just days. It takes away the boring and repetitive parts of game development and helps you focus on the core functionality of the game 
 
@@ -11,7 +11,6 @@ This unity package enables you to reduce the time required to prototype and feel
 - [Inventory System](#inventory-system)
 - [Shop System](#shop-system)
 - [Upgrade System](#upgrade-system)
-- [XP Management System](#xp-management-system)
 - [Powerup System](#power-up-system)
 - [Stats Class](#stats-class)
 - [Projectile Gun System](#projectile-gun-system)
