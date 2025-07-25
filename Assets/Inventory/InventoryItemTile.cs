@@ -8,7 +8,7 @@ public class InventoryItemTile : MonoBehaviour
     public Image tileItemImage;
     public TMP_Text tileText;
 
-    public void setupTile(InventoryItemSO item, UnityAction<InventoryItemSO> PurchaseItem)
+    public void setupTile(IInventoryItem item, UnityAction<IInventoryItem> PurchaseItem)
     {
         Button tileButton = GetComponent<Button>();
         if (tileButton != null) // Check if the button and item are not null

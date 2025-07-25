@@ -19,7 +19,7 @@ public class InventoryUI : MonoBehaviour
             {
                 if (inventory.objects[i] != null)
                 {
-                    if (inventory.objects[i] is InventoryItemSO so)
+                    if (inventory.objects[i] is IInventoryItem so)
                     {
                         Debug.Log("name: " + so.displayName);
                         tile.GetComponent<InventoryItemTile>().setupTile(so, inventory.ItemSelected);

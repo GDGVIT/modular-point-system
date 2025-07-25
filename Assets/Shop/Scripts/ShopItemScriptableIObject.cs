@@ -12,7 +12,7 @@ public class ShopItemScriptableIObject : ScriptableObject
     public string itemName;// Name of the item to be displayed in the shop
     public string itemDescription;// Description of the item to be displayed in the shop
     public SaveableVariables parameters;
-    public ShopItemEffects[] effects;// Event to register all the fuctions which need to be called on purchase of item
+    public ItemEffect[] effects;// Event to register all the fuctions which need to be called on purchase of item
 }
 
 [System.Serializable]

@@ -68,9 +68,9 @@ public class ShopManager : MonoBehaviour, ISaveFuncs
             if (item.parameters.isPurchased)
             {
                 Debug.Log("Item is already purchased but out of stock.");
-                foreach (ShopItemEffects effect in item.effects)
+                foreach (ItemEffect effect in item.effects)
                 {
-                    effect.Apply(item); // Invoke all the effects associated with the item
+                    effect.ApplyEffect(item); // Invoke all the effects associated with the item
                 }
             }
 
@@ -86,9 +86,9 @@ public class ShopManager : MonoBehaviour, ISaveFuncs
 
             Debug.Log($"Purchased {item.itemName} for {item.parameters.itemPrice} coins.");
 
-            foreach (ShopItemEffects effect in item.effects)
+            foreach (ItemEffect effect in item.effects)
             {
-                effect.Apply(item); // Invoke all the effects associated with the item
+                effect.ApplyEffect(item); // Invoke all the effects associated with the item
             }
         }
         else

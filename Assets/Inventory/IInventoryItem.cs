@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public interface InventoryItemSO
+public interface IInventoryItem
 {
     public string displayName { get; }
     public Sprite image { get; }

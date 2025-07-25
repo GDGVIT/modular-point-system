@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
 
-public class Gun : MonoBehaviour
+public class GunManager : MonoBehaviour
 {
     ObjectPooler pool;
     InputSystem_Actions input;

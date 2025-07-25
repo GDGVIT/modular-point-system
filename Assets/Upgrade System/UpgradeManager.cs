@@ -48,9 +48,9 @@ public class UpgradeManager : MonoBehaviour
         // Assuming we have a method to check player's currency
         item.isPurchased = true;// Mark the item as purchased
 
-        foreach (UpgradeItemEffects effect in item.effects)
+        foreach (ItemEffect effect in item.data.effects)
         {
-            effect.Apply(item); // Apply all effects associated with the item 
+            effect.ApplyEffect(item); // Apply all effects associated with the item 
         }
 
         Time.timeScale = 1f; // Resume the game time after purchase

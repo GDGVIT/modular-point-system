@@ -11,18 +11,13 @@ public class ObjectPooler : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (instance == this)
-        {
-            instance = null;
-        }
+        if (instance == this) instance = null;
     }
 
     private void Awake()
     {
         if (instance != null) Destroy(instance.gameObject);
-
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
 
         for (int i = 0; i < items.Count; i++)
         {
@@ -34,7 +29,7 @@ public class ObjectPooler : MonoBehaviour
     {
         for (int i = 0; i < size; i++)
         {
-            GameObject bullet = Instantiate(prefab, this.transform);
+            GameObject bullet = Instantiate(prefab, transform);
             pool.Enqueue(bullet);
             bullet.SetActive(false);
         }
@@ -42,8 +37,6 @@ public class ObjectPooler : MonoBehaviour
 
     public GameObject GetObject(int i)
     {
-        i -= 1;
-
         if (items[i].objectPool.Count > 0)
         {
             GameObject obj = items[i].objectPool.Dequeue();
@@ -52,7 +45,7 @@ public class ObjectPooler : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(items[i].Prefab, this.transform);
+            GameObject obj = Instantiate(items[i].Prefab, transform);
             items[i].objectPool.Enqueue(obj);
             return obj;
         }
@@ -60,8 +53,6 @@ public class ObjectPooler : MonoBehaviour
 
     public void ReturnObject(GameObject obj, int i)
     {
-        i -= 1;
-
         items[i].objectPool.Enqueue(obj);
         obj.SetActive(false);
     }

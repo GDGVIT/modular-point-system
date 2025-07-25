@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
-    public void ItemSelected(InventoryItemSO item)
+    public void ItemSelected(IInventoryItem item)
     {
         item.EquipItem();
     }
@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            if (item is InventoryItemSO so)
+            if (item is IInventoryItem so)
             {
                 so.AddItem();
             }
