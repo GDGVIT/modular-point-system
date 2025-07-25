@@ -2,8 +2,7 @@
 <a href="https://dscvit.com">
 	<img width="400" src="https://user-images.githubusercontent.com/56252312/159312411-58410727-3933-4224-b43e-4e9b627838a3.png#gh-light-mode-only" alt="GDSC VIT"/>
 </a>
-	<h2 align="center"> < Insert Project Title Here > </h2>
-	<h4 align="center"> < Insert Project Description Here > <h4>
+	<h2 align="center"> < ModuKit > </h2>
 </p>
 
 ---
@@ -30,7 +29,7 @@
 ## Dependencies
 - Unity Engine (2023+)
 
-
+<br>
 ## Installation and Usage
 
 1.Download the unity package from 
@@ -46,7 +45,7 @@
 		<td>
 		Yatharth Tongia
 		<p align="center">
-			<img src = "https://dscvit.com/images/dsc-logo-square.svg" width="150" height="150" alt="Your Name Here (Insert Your Image Link In Src">
+			<img src = "docs/images/me.jpg" width="150" height="150" alt="Yatharth">
 		</p>
 			<p align="center">
 				<a href = "https://github.com/yath-rth">
